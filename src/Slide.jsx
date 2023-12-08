@@ -7,6 +7,8 @@ const Slide = ({ person, currentPerson, personIndex }) => {
       className="slide"
       style={{
         transform: `translateX(${100 * (personIndex - currentPerson)}%)`,
+        opacity: personIndex === currentPerson ? 1 : 0,
+        visibility: personIndex === currentPerson ? "visible" : "hidden",
       }}
     >
       <img className="person-img" src={image} alt={name} />

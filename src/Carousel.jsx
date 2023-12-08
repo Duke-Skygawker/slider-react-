@@ -1,15 +1,32 @@
-import { useState } from "react";
-import Slide from "./Slide";
+import { useState, useEffect } from "react";
 import { shortList, list, longList } from "./data";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import Slide from "./Slide";
 
 const Carousel = () => {
   const [currentPerson, setCurrentPerson] = useState(0);
-  const [items, setItems] = useState(list);
+  const [items, setItems] = useState(longList);
 
-  const showNext = () => {};
-  const showPrev = () => {};
-
+  const showNext = () => {
+    setCurrentPerson((oldPerson) => {
+      const result = (oldPerson + 1) % items.length;
+      return result;
+    });
+  };
+  const showPrev = () => {
+    setCurrentPerson((oldPerson) => {
+      const result = (oldPerson - 1 + items.length) % items.length;
+      return result;
+    });
+  };
+  useEffect(() => {
+    let sliderId = setInterval(() => {
+      showNext();
+    }, 3000);
+    return () => {
+      clearInterval(sliderId);
+    };
+  }, [currentPerson]);
   return (
     <div className="slider-container">
       {items.map((item, personIndex) => {
