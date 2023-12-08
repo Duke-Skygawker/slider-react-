@@ -373,9 +373,7 @@ ul {
   display: inline-block;
 }
 
-.slick-prev::before {
-  color: var(--primary-500) !important;
-}
+.slick-prev::before,
 .slick-next::before {
   color: var(--primary-500) !important;
 }
