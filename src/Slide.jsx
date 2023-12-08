@@ -1,9 +1,14 @@
-import { FaAngleLeft, FaAngleRight, FaQuoteRight } from "react-icons/fa6";
+import { FaQuoteRight } from "react-icons/fa6";
 
-const Slide = ({ person }) => {
+const Slide = ({ person, currentPerson, personIndex }) => {
   const { image, name, title, quote } = person;
   return (
-    <section className="slide">
+    <section
+      className="slide"
+      style={{
+        transform: `translateX(${100 * (personIndex - currentPerson)}%)`,
+      }}
+    >
       <img className="person-img" src={image} alt={name} />
       <h3 className="name">{name}</h3>
       <h5 className="title">{title}</h5>
@@ -11,16 +16,6 @@ const Slide = ({ person }) => {
       <i className="icon">
         <FaQuoteRight />
       </i>
-      <button className="btn prev" type="button">
-        <i>
-          <FaAngleLeft />
-        </i>
-      </button>
-      <button className="btn next" type="button">
-        <i>
-          <FaAngleRight />
-        </i>
-      </button>
     </section>
   );
 };
